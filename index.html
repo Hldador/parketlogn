@@ -976,8 +976,7 @@
     const patternExtra = { beint: 0, ska: 750, sildar: 1500 };
     const patternNames = { beint: 'Beint', ska: 'Skálagt', sildar: 'Síldarmunstur' };
     const tearoutPrice = 2250;
-    const marginLo = 0.05;
-    const marginHi = 0.10;
+    const marginPct = 0.15;
 
     let calcState = { sqm: 60, type: 'fljotandi', pattern: 'beint', tearout: false };
 
@@ -990,8 +989,8 @@
       const patExtra = patternExtra[calcState.pattern] * calcState.sqm;
       const tearExtra = calcState.tearout ? tearoutPrice * calcState.sqm : 0;
       const total = base + patExtra + tearExtra;
-      const lo = Math.round(total * (1 - marginLo));
-      const hi = Math.round(total * (1 + marginHi));
+      const lo = Math.round(total * (1 - marginPct));
+      const hi = Math.round(total * (1 + marginPct));
 
       document.getElementById('resType').textContent = typeNames[calcState.type];
       document.getElementById('resTypePrice').textContent = fmt(base);
