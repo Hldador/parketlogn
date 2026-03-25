@@ -585,7 +585,7 @@
   <section class="hero">
     <div class="hero-pattern"></div>
     <div class="hero-content">
-      <div class="hero-badge">Fagleg parketlogn á Íslandi</div>
+      <div class="hero-badge">Fagleg parketlögn á Íslandi</div>
       <h1>Parket er okkar <em>leiðarljós</em></h1>
       <p class="hero-sub">
         Við leggjum parket af kostgæfni og fagmennsku. Fjölskyldufyrirtæki
@@ -621,7 +621,7 @@
       <div class="section-label reveal">Þjónusta</div>
       <h2 class="section-title reveal">Allt sem snýr að parketlogn</h2>
       <p class="section-desc reveal">
-        Við sérhæfum okkur í lögn á öllum helstu gerðum parketa og gólfefna.
+        Við sérhæfum okkur í lögn á öllum helstu gerðum parketa.
         Fagleg vinnubrögð og vönduð framkvæmd í hverju verki.
       </p>
       <div class="services-grid">
@@ -636,9 +636,9 @@
           <p>Fljótleg og auðveld uppsetning. Fljótandi parket er vinsæll kostur sem hentar vel á flest heimili og vinnustaði.</p>
         </div>
         <div class="service-card reveal">
-          <div class="service-icon">💧</div>
-          <h3>Vínilparket</h3>
-          <p>Vatnsþolið og endingargott. Vínilparket er frábær lausn fyrir baðherbergi, eldhús og önnur rými þar sem raki er til staðar.</p>
+          <div class="service-icon">🏠</div>
+          <h3>Vínylparket</h3>
+          <p>Eitt mest selda gólfefnið á heimili, verslanir og vinnustaði. Hljóðlágt, sterkt og vatnsþolið — auðþvægt, viðhaldslítið og einstaklega hentugt á heimili með gæludýr.</p>
         </div>
         <div class="service-card reveal">
           <div class="service-icon">🔨</div>
@@ -747,7 +747,7 @@
     <div class="section-inner">
       <div class="about-header reveal" style="text-align:center; max-width:650px; margin:0 auto 3rem;">
         <div class="section-label">Um okkur</div>
-        <h2 class="section-title">Feðgarnir á bak við Parketlogn</h2>
+        <h2 class="section-title">Fjölskyldufyrirtæki</h2>
         <p class="section-desc" style="margin:0 auto;">
           Parketlogn.is er fjölskyldufyrirtæki rekið af feðgum með mikla reynslu
           í byggingaiðnaði. Við leggjum áherslu á vandaða vinnu, persónulega
@@ -756,17 +756,14 @@
       </div>
       <div class="team-cards reveal">
         <div class="team-card">
-          <div class="team-photo">S</div>
           <div class="team-name">Smári Friðjónsson</div>
           <div class="team-role">Húsasmíðameistari</div>
         </div>
         <div class="team-card">
-          <div class="team-photo">A</div>
           <div class="team-name">Arnar Þór Smárason</div>
           <div class="team-role">Nemi í húsasmíði</div>
         </div>
         <div class="team-card">
-          <div class="team-photo">A</div>
           <div class="team-name">Aron Már Smárason</div>
           <div class="team-role">Verkefnastjóri</div>
         </div>
@@ -881,7 +878,7 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
-      <a href="#" class="footer-logo">PARKETLOGN</a>
+      <a href="#" class="footer-logo">PARKETLÖGN</a>
       <div class="footer-copy">© 2026 Parketlogn.is – Öll réttindi áskilin</div>
       <div class="footer-social">
         <a href="https://facebook.com/parketlogn" target="_blank" aria-label="Facebook">f</a>
@@ -933,7 +930,7 @@
 
     // ── CALCULATOR ──
     const prices = {
-      fljotandi: 4250, hardparket: 4750, vinil: 3750, gegnheilt: 6750
+      fljotandi: 4250, hardparket: 4750, vinil: 4250, gegnheilt: 6750
     };
     const typeNames = {
       fljotandi: 'Fljótandi parket', hardparket: 'Harðparket',
@@ -942,7 +939,8 @@
     const patternExtra = { beint: 0, ska: 750, sildar: 1500 };
     const patternNames = { beint: 'Beint', ska: 'Skálagt', sildar: 'Síldarmunstur' };
     const tearoutPrice = 2250;
-    const marginPct = 0.15;
+    const marginLo = 0.05;
+    const marginHi = 0.10;
 
     let calcState = { sqm: 60, type: 'fljotandi', pattern: 'beint', tearout: false };
 
@@ -955,8 +953,8 @@
       const patExtra = patternExtra[calcState.pattern] * calcState.sqm;
       const tearExtra = calcState.tearout ? tearoutPrice * calcState.sqm : 0;
       const total = base + patExtra + tearExtra;
-      const lo = Math.round(total * (1 - marginPct));
-      const hi = Math.round(total * (1 + marginPct));
+      const lo = Math.round(total * (1 - marginLo));
+      const hi = Math.round(total * (1 + marginHi));
 
       document.getElementById('resType').textContent = typeNames[calcState.type];
       document.getElementById('resTypePrice').textContent = fmt(base);
