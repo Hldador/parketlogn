@@ -125,12 +125,25 @@
     // Form handler
     function handleSubmit(e) {
       e.preventDefault();
-      const btn = e.target.querySelector('button');
-      btn.textContent = 'Skilaboð send! ✓';
-      btn.style.background = '#4a8c5c';
-      setTimeout(() => {
-        btn.innerHTML = 'Senda skilaboð <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-        btn.style.background = '';
-        e.target.reset();
-      }, 3000);
+      const form = e.target;
+      const btn = form.querySelector('button');
+      const data = new FormData(form);
+      fetch('/', { method: 'POST', body: data })
+        .then(() => {
+          btn.textContent = 'Skilaboð send! ✓';
+          btn.style.background = '#4a8c5c';
+          setTimeout(() => {
+            btn.innerHTML = 'Senda skilaboð <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+            btn.style.background = '';
+            form.reset();
+          }, 3000);
+        })
+        .catch(() => {
+          btn.textContent = 'Villa — reyndu aftur';
+          btn.style.background = '#c0392b';
+          setTimeout(() => {
+            btn.innerHTML = 'Senda skilaboð <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+            btn.style.background = '';
+          }, 3000);
+        });
     }
