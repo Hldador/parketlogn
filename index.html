@@ -304,7 +304,11 @@
           </div>
         </div>
 
-        <form class="contact-form reveal" name="contact" method="POST" data-netlify="true" onsubmit="handleSubmit(event)">
+        <form class="contact-form reveal" method="POST" action="https://api.web3forms.com/submit" onsubmit="handleSubmit(event)">
+          <input type="hidden" name="access_key" value="67b9c69f-ceca-4be6-b7d3-f9fc93ec132b">
+          <input type="hidden" name="subject" value="Ný fyrirspurn af parketlogn.is">
+          <input type="hidden" name="from_name" value="Parketlögn.is">
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
           <div class="form-row">
             <div class="form-group">
               <label for="name">Nafn</label>

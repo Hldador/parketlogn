@@ -122,28 +122,27 @@
     // Init
     updateCalc();
 
-    // Form handler
+    // Form handler (sendir í Web3Forms API)
     function handleSubmit(e) {
       e.preventDefault();
       const form = e.target;
       const btn = form.querySelector('button');
       const data = new FormData(form);
-      fetch('/', { method: 'POST', body: data })
-        .then(() => {
+      const resetBtn = () => {
+        btn.innerHTML = 'Senda skilaboð <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        btn.style.background = '';
+      };
+      fetch(form.action, { method: 'POST', body: data })
+        .then(r => r.json().then(json => ({ ok: r.ok && json.success, json })))
+        .then(({ ok }) => {
+          if (!ok) throw new Error('submit failed');
           btn.textContent = 'Skilaboð send! ✓';
           btn.style.background = '#4a8c5c';
-          setTimeout(() => {
-            btn.innerHTML = 'Senda skilaboð <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-            btn.style.background = '';
-            form.reset();
-          }, 3000);
+          setTimeout(() => { resetBtn(); form.reset(); }, 3000);
         })
         .catch(() => {
           btn.textContent = 'Villa — reyndu aftur';
           btn.style.background = '#c0392b';
-          setTimeout(() => {
-            btn.innerHTML = 'Senda skilaboð <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-            btn.style.background = '';
-          }, 3000);
+          setTimeout(resetBtn, 3000);
         });
     }
