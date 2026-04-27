@@ -40,7 +40,7 @@
 
     // ── CALCULATOR ──
     const prices = {
-      fljotandi: 4250, hardparket: 4750, vinil: 4250, gegnheilt: 6750
+      fljotandi: 4750, hardparket: 4750, vinil: 4450, gegnheilt: 6750
     };
     const typeNames = {
       fljotandi: 'Fljótandi parket', hardparket: 'Harðparket',
