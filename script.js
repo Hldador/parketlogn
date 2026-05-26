@@ -40,15 +40,15 @@
 
     // ── CALCULATOR ──
     const prices = {
-      fljotandi: 4750, hardparket: 4750, vinil: 4450, gegnheilt: 6750
+      fljotandi: 5225, hardparket: 5225, vinil: 4895, gegnheilt: 7425
     };
     const typeNames = {
       fljotandi: 'Fljótandi parket', hardparket: 'Harðparket',
       vinil: 'Vínilparket', gegnheilt: 'Gegnheilt parket'
     };
-    const patternExtra = { beint: 0, ska: 750, sildar: 1500 };
+    const patternExtra = { beint: 0, ska: 825, sildar: 1650 };
     const patternNames = { beint: 'Beint', ska: 'Skálagt', sildar: 'Síldarmunstur' };
-    const tearoutPrice = 2250;
+    const tearoutPrice = 2475;
     const marginPct = 0.15;
 
     let calcState = { sqm: 60, type: 'fljotandi', pattern: 'beint', tearout: false };
